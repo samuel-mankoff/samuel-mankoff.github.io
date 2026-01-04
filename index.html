@@ -11,20 +11,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      /* Base colors */
+    /* :root{
+      /* Base colors *
       --bg: #0f172a;       /* Dark Mode Base */
       --text: #f1f5f9;
       --muted: #94a3b8;
       
-      /* Brand */
+      /* Brand *
       --brand: #6366f1;
       --accent: #22d3ee;
       --success: #10b981;
 
-      /* Cards */
+      /* Cards *
       --card-bg: rgba(30, 41, 59, 0.7);
       --border: rgba(255,255,255,0.1);
+
+      /* Layout *
+      --max: 1120px;
+    }
+     */
+    
+    :root {
+      /* Base colors (Light Mode) */
+      --bg: #f8fafc;        /* Almost white background */
+      --text: #0f172a;      /* Dark blue-black text */
+      --muted: #64748b;     /* Medium gray for secondary text */
+
+      /* Brand */
+      --brand: #4f46e5;     /* Indigo */
+      --accent: #0ea5e9;    /* Sky blue */
+      --success: #10b981;   /* Emerald green */
+
+      /* Cards */
+      --card-bg: #ffffff;   /* Pure white cards */
+      --border: #e2e8f0;    /* Light gray borders */
 
       /* Layout */
       --max: 1120px;
@@ -267,7 +287,7 @@
                  <div class="grid-3">
           
           <a href="https://zhenga1.github.io/vr-teleop-robotics/" target="_blank" class="card">
-            <img src="images/UR7e.png" alt="VR Teleop" class="project-image">
+            <img src="images/Quest_ur7e" alt="VR Teleop" class="project-image">
             <div class="tag-row">
               <span class="pill accent">ROS 2</span>
               <span class="pill">Python</span>
@@ -287,7 +307,9 @@
             <h3>Seismic Stability (Unitree Go1)</h3>
             <p>Trained RL policies for a quadruped to recover from ground velocity surges. Based on mjlab framework.</p>
             <div style="margin-top:12px; display:flex; gap:10px;">
-              <a href="https://docs.google.com/presentation/d/1oaYotDyvf23qw22o23Tz1siIyZ4IOhjdEnGI-_WLmuU/edit?usp=sharing" target="_blank" class="pill brand" style="text-decoration:none;">View Slides ↗</a>
+              <!-- <a href="https://docs.google.com/presentation/d/1oaYotDyvf23qw22o23Tz1siIyZ4IOhjdEnGI-_WLmuU/edit?usp=sharing" target="_blank" class="pill brand" style="text-decoration:none;">View Slides ↗</a> -->
+              <a href="pdf/ME292b.pdf" target="_blank" class="pill brand" style="text-decoration:none;">View Slides ↗</a>
+
             </div>
           </div>
         
@@ -335,7 +357,7 @@
           </div>
         
           <div class="card">
-            <img src="images/abaqus_thumbnail.png" alt="Abaqus VUMAT" class="project-image">
+            <img src="images/Abaqus.png" alt="Abaqus VUMAT" class="project-image">
             <div class="tag-row">
               <span class="pill accent">Fortran</span>
               <span class="pill">Abaqus</span>
@@ -358,7 +380,7 @@
           </div>
         
           <div class="card">
-            <img src="images/embedded_thumb.png" alt="Embedded Device" class="project-image">
+            <img src="images/Path_tracker.png" alt="Embedded Device" class="project-image">
             <div class="tag-row">
               <span class="pill accent">Embedded</span>
               <span class="pill">C</span>
@@ -368,7 +390,7 @@
             <p>Designed a mechatronic device using ESP32 and IMU sensor fusion to maintain absolute heading.</p>
           </div>
         
-          <div class="card">
+          <!-- <div class="card">
             <img src="images/turbine_thumb.png" alt="Wind Turbine" class="project-image">
             <div class="tag-row">
               <span class="pill accent">SolidWorks</span>
@@ -376,7 +398,24 @@
             </div>
             <h3>Wind Turbine Design</h3>
             <p>Designed and manufactured a high-stiffness turbine blade assembly, validated via FEA and physical testing.</p>
+          </div> -->
+
+         <div class="card">
+          <img src="images/windtunnel.png" alt="CFD vs Wind Tunnel" class="project-image">
+          
+          <div class="tag-row">
+            <span class="pill accent">Ansys CFD</span>
+            <span class="pill">Wind Tunnel</span>
+            <span class="pill">MATLAB</span>
           </div>
+          
+          <h3>CFD Model Validation</h3>
+          <p>Validated an Ansys K-Omega SST turbulence model against physical wind tunnel data, analyzing drag/downforce error margins.</p>
+      
+          <div style="margin-top:12px;">
+            <a href="pdf/ME103.pdf" target="_blank" class="pill brand" style="text-decoration:none;">View Analysis Slides ↗</a>
+          </div>
+        </div>
         
         </div>
       
@@ -393,6 +432,7 @@
 
       <div class="grid-2">
         <div class="card">
+          <img src="images/taylormade.jpg" alt="TaylorMade Golf" class="project-image" style="object-fit: contain; background: #fff; padding: 20px;">
           <div class="tag-row"><span class="pill">Internship</span></div>
           <h3>TaylorMade Golf</h3>
           <p style="margin-bottom: 10px; color: var(--text);"><b>R&D Engineering Intern</b></p>
@@ -400,6 +440,7 @@
         </div>
 
         <div class="card">
+          <img src="images/FSAE.png" alt="Formula Electric Car" class="project-image">
           <div class="tag-row"><span class="pill">Competition Team</span></div>
           <h3>Formula Electric (FSAE)</h3>
           <p style="margin-bottom: 10px; color: var(--text);"><b>Mechanical Design Team</b></p>
