@@ -495,7 +495,7 @@
           </div>
         </div>
 
-        <div class="card" style="cursor:pointer;"> <img src="images/Crazyflie-drone.png" alt="C++ Drone" class="project-image">
+        <div class="card" onclick="openModal('m-cpp')" style="cursor:pointer;"> <img src="images/Crazyflie-drone.png" alt="C++ Drone" class="project-image">
           <div class="tag-row">
             <span class="pill accent">C++</span>
             <span class="pill">Embedded</span>
@@ -504,7 +504,7 @@
           <p>Implemented a cascaded PID controller and state estimator in C++ on a microcontroller for obstacle navigation.</p>
         </div>
 
-        <div class="card" style="cursor:pointer;"> <img src="images/Path_tracker.png" alt="Embedded Device" class="project-image">
+        <div class="card" onclick="openModal('m-tracker')" style="cursor:pointer;"> <img src="images/Path_tracker.png" alt="Embedded Device" class="project-image">
           <div class="tag-row">
             <span class="pill accent">Embedded</span>
             <span class="pill">C</span>
@@ -514,7 +514,7 @@
           <p>Designed a mechatronic device using ESP32 and IMU sensor fusion to maintain absolute heading.</p>
         </div>
 
-        <div class="card" style="cursor:pointer;"> <img src="images/turbine_thumb.png" alt="Wind Turbine" class="project-image">
+        <div class="card" onclick="openModal('m-turbine')" style="cursor:pointer;"> <img src="images/turbine_thumb.png" alt="Wind Turbine" class="project-image">
           <div class="tag-row">
             <span class="pill accent">SolidWorks</span>
             <span class="pill">FEA</span>
@@ -535,7 +535,7 @@
       </div>
 
       <div class="grid-2">
-        <div class="card">
+        <div class="card" onclick="openModal('m-taylor')">
           <img src="images/taylormade.jpg" alt="TaylorMade Golf" class="project-image" style="object-fit: contain; background: #fff; padding: 20px;">
           <div class="tag-row"><span class="pill">Internship</span></div>
           <h3>TaylorMade Golf</h3>
@@ -543,7 +543,7 @@
           <p>Conducted robot-based swing testing and data analysis to validate performance metrics for next-gen driver designs.</p>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openModal('m-fsae')">
           <img src="images/FSAE.png" alt="Formula Electric Car" class="project-image">
           <div class="tag-row"><span class="pill">Competition Team</span></div>
           <h3>Formula Electric (FSAE)</h3>
@@ -559,7 +559,7 @@
       <p>&copy; 2026 Samuel Mankoff. Built with HTML/CSS.</p>
     </div>
   </footer>
-
+<!-- 
 <div id="m-teleop" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-content">
       <button class="close-btn" onclick="closeModal(event)">×</button>
@@ -737,7 +737,282 @@
         document.body.style.overflow = 'auto'; // Restore scrolling
       }
     }
-  </script>
+  </script> -->
+
+  <div id="m-teleop" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">VR Teleoperation for LfD</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">ROS 2 • Meta Quest 3 • UR7e</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>Imitation Learning requires high-quality human demonstration data. Existing collection methods (kinesthetic teaching) are tedious, while commercial teleop systems are prohibitively expensive.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <ul style="margin-top:5px; padding-left:20px; font-size:15px; color:var(--text);">
+            <li><b>Architecture:</b> Built a custom bridge using <b>Zenoh</b> to stream Quest 3 controller pose data to ROS 2 (Humble) over WiFi with minimal packet loss.</li>
+            <li><b>Control Logic:</b> Implemented a "Logical Home" mapping algorithm that retargets the user's unconstrained hand motion into the robot's safety-limited workspace, preventing singularities.</li>
+            <li><b>Vision:</b> Integrated Intel RealSense RGB-D streams for object detection (HSV filtering) to trigger automated task queues.</li>
+          </ul>
+        </div>
+        <div class="star-item">
+          <h4>Outcomes</h4>
+          <p>Achieved sub-100ms end-to-end latency. The system successfully recorded and replayed complex sorting tasks, creating datasets compatible with standard IL pipelines.</p>
+        </div>
+        <div style="margin-top:20px;">
+           <a href="https://zhenga1.github.io/vr-teleop-robotics/" target="_blank" class="pill brand">View Website ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-unitree" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Seismic Stability (Unitree Go1)</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">Reinforcement Learning • MuJoCo</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>Legged robots struggle with sudden ground displacements (e.g., earthquakes or slipping). Standard position control fails because it cannot adapt compliance in real-time.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <ul style="margin-top:5px; padding-left:20px; font-size:15px; color:var(--text);">
+            <li><b>Training:</b> Trained a policy using PPO (Proximal Policy Optimization) in MuJoCo (mjlab framework).</li>
+            <li><b>Reward Shaping:</b> Designed a custom reward function that penalized base-height deviation and joint velocity spikes while heavily rewarding continuous foot contact time.</li>
+            <li><b>Domain Randomization:</b> Varied ground friction and impulse magnitude during training to improve sim-to-real robustness.</li>
+          </ul>
+        </div>
+        <div class="star-item">
+          <h4>Outcomes</h4>
+          <p>The policy successfully recovered from ground velocity surges 3x higher than the baseline controller, maintaining upright stability where other methods capsized.</p>
+        </div>
+        <div style="margin-top:20px;">
+           <a href="pdf/ME292b.pdf" target="_blank" class="pill brand">View Slides ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-mpc" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Nonlinear MPC for Drones</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">Optimal Control • Pyomo • IPOPT</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>Autonomous docking on moving targets (e.g., delivery trucks) requires aggressive maneuvering that defies linear assumptions.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <ul style="margin-top:5px; padding-left:20px; font-size:15px; color:var(--text);">
+            <li><b>Dynamics:</b> Derived full 12-state nonlinear equations of motion to capture pitch/roll coupling effects.</li>
+            <li><b>Optimization:</b> Formulated as a Constrained Finite Time Optimal Control (CFTOC) problem using <b>Pyomo</b> and solved via <b>IPOPT</b>.</li>
+            <li><b>Constraints:</b> Hard-coded actuator saturation limits and safety corridors to prevent crashes during the approach phase.</li>
+          </ul>
+        </div>
+        <div class="star-item">
+          <h4>Key Challenges</h4>
+          <p>Linear MPC failed at pitch angles >15° due to linearization errors. Switching to Nonlinear MPC solved this but required optimizing the solver horizon to run in real-time.</p>
+        </div>
+        <div style="margin-top:20px;">
+           <a href="MPC_Final_Project (3).pdf" target="_blank" class="pill brand">Read Report 📄</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-cassie" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Cassie Robot Stabilization</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">Feedback Control • MATLAB</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>Bipedal robots like Cassie are underactuated and inherently unstable (like an inverted pendulum), requiring continuous active control to stand.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <p>I linearized the robot's dynamics around a fixed operating point (standing height). I designed an <b>LQR (Linear Quadratic Regulator)</b> state-space controller in MATLAB to optimally balance state error against control effort.</p>
+        </div>
+        <div class="star-item">
+          <h4>Outcomes</h4>
+          <p>Stabilized the simulation against external impulse disturbances, allowing the robot to return to a vertical equilibrium automatically.</p>
+        </div>
+        <div style="margin-top:20px;">
+           <a href="https://github.com/samuel-mankoff/Cassie-Biped-Controller.git" target="_blank" class="pill brand">View Code ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-cfd" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">CFD Model Validation</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">Ansys Fluent • Wind Tunnel</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>Numerical CFD models are cheaper than wind tunnels, but "All models are wrong, some are useful." We needed to quantify exactly <i>how</i> wrong the standard turbulence models were.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <p>We conducted physical wind tunnel testing on an airfoil using strain gauges to measure lift/drag. I then recreated the setup in <b>Ansys Fluent</b> using the <b>K-Omega SST</b> turbulence model, ensuring mesh convergence at the boundary layer.</p>
+        </div>
+        <div class="star-item">
+          <h4>Outcomes</h4>
+          <p><b>Drag:</b> CFD matched physical data within 5%.<br><b>Downforce:</b> CFD deviated by >10%, revealing that K-Omega SST struggles to predict flow separation at high angles of attack.</p>
+        </div>
+        <div style="margin-top:20px;">
+           <a href="pdf/ME103.pdf" target="_blank" class="pill brand">View Analysis Slides ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-vumat" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Constitutive Modeling (VUMAT)</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">Fortran • Abaqus FEA</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>Standard material libraries fail to capture the thermodynamic coupling (heating due to deformation) that occurs during high-speed impact events.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <p>I derived the finite-strain thermoelastic constitutive equations from first principles. I implemented these in a custom <b>Fortran VUMAT</b> subroutine, using a radial return mapping algorithm to update stress states at each integration point.</p>
+        </div>
+        <div class="star-item">
+          <h4>Outcomes</h4>
+          <p>The subroutine successfully predicted adiabatic temperature rise during impact, verified against analytical benchmarks.</p>
+        </div>
+        <div style="margin-top:20px;">
+           <a href="Thermoelasticity_Report (1).pdf" target="_blank" class="pill brand">Read Report 📄</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-cpp" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Custom Flight Controller</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">C++ • Embedded Systems</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Motivation</h4>
+          <p>To deeply understand flight dynamics, I built a flight controller from scratch rather than using off-the-shelf firmware (like Betaflight).</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <p>Implemented a <b>Cascaded PID</b> architecture (Position loop → Attitude loop → Rate loop) running at 500Hz. Wrote a complementary filter in C++ to fuse accelerometer and gyroscope data for low-drift state estimation.</p>
+        </div>
+        <div class="star-item">
+          <h4>Outcomes</h4>
+          <p>Achieved stable hover and obstacle navigation in a constrained environment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-tracker" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Handheld Path-Tracker</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">ESP32 • Sensor Fusion</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Goal</h4>
+          <p>Create a device capable of "Dead Reckoning" (tracking position without GPS) to guide a user back to their starting point.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <p>Interfaced an IMU (MPU6050) and rotary encoders with an <b>ESP32</b>. Used sensor fusion to integrate acceleration and heading data into a global position estimate, displaying the "Home Vector" on an OLED screen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-turbine" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Wind Turbine Design</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">SolidWorks • FEA</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Goal</h4>
+          <p>Design a high-efficiency turbine blade assembly that minimizes deflection under heavy load.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Approach</h4>
+          <p>Modeled complex blade geometry in SolidWorks. Conducted Static Structural FEA to identify stress concentrations and optimized the internal spar structure. Manufactured the final assembly using rapid prototyping and composite reinforcement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-taylor" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">TaylorMade Golf</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">R&D Engineering Intern</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Role & Responsibility</h4>
+          <p>Worked with the R&D Innovation team to validate performance claims for prototype driver heads.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Contribution</h4>
+          <ul style="margin-top:5px; padding-left:20px; font-size:15px; color:var(--text);">
+            <li>Operated an industrial swing robot to conduct consistent impact testing.</li>
+            <li>Processed large datasets using Python/Matlab to correlate launch monitor data with physical design changes (CG location, face thickness).</li>
+            <li>Designed and 3D printed custom fixtures to hold club heads during measurement.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="m-fsae" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal(event)">×</button>
+      <h2 style="margin-bottom: 5px;">Formula Electric (FSAE)</h2>
+      <p style="color:var(--brand); font-weight:600; margin-bottom:20px;">Mechanical Design Team</p>
+
+      <div class="star-grid">
+        <div class="star-item">
+          <h4>Role & Responsibility</h4>
+          <p>Designed critical subsystems for a high-performance electric racecar.</p>
+        </div>
+        <div class="star-item">
+          <h4>Technical Contribution</h4>
+          <ul style="margin-top:5px; padding-left:20px; font-size:15px; color:var(--text);">
+            <li><b>High Voltage Accumulator:</b> Assisted in the mechanical packaging and thermal management design of the battery pack.</li>
+            <li><b>Chassis:</b> Modeled mounting brackets and structural members in SolidWorks, performing FEA to ensure compliance with strict SAE safety regulations.</li>
+            <li><b>Manufacturing:</b> Machined components (Mill/Lathe) and managed assembly of the rear subframe.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
   
 </body>
 </html>
